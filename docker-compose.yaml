@@ -1,0 +1,19 @@
+version: '3'
+services:
+  airbyte-server:
+    image: airbyte/airbyte-server:latest
+    container_name: airbyte-server
+    ports:
+      - "8000:8000"
+    environment:
+      - CONFIG_DIR=/data
+    volumes:
+      - /path/to/airbyte_data:/data
+
+  airbyte-webapp:
+    image: airbyte/airbyte-webapp:latest
+    container_name: airbyte-webapp
+    ports:
+      - "80:80"
+    depends_on:
+      - airbyte-server
